@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+.rounded-circle{
+  height: 3rem;
+  width: 3rem;
+  float: left;
+  border-radius: 50%;
+  padding-right: 2px;
+  overflow: hidden;
+  justify-content: center;
+}
