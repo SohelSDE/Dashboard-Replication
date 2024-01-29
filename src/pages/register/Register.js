@@ -1,27 +1,36 @@
 // Register.js
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from "react";
 
-import { NavLink } from 'react-router-dom';
-import { Container, Alert, Button, FormGroup, InputGroup, InputGroupText, Input, Label } from 'reactstrap';
+import { NavLink } from "react-router-dom";
+import {
+  Container,
+  Alert,
+  Button,
+  FormGroup,
+  InputGroup,
+  InputGroupText,
+  Input,
+  Label,
+} from "reactstrap";
 
-import Widget from '../../components/Widget';
-import { registerUser, registerError } from '../../actions/register';
+import Widget from "../../components/Widget";
+import { registerUser, registerError } from "../../actions/register";
 // import microsoft from '../../assets/microsoft.png';
 
 const Register = ({ dispatch, isFetching, errorMessage, history }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const changeEmail = useCallback(event => {
+  const changeEmail = useCallback((event) => {
     setEmail(event.target.value);
   }, []);
 
-  const changePassword = useCallback(event => {
+  const changePassword = useCallback((event) => {
     setPassword(event.target.value);
   }, []);
 
-  const changeConfirmPassword = useCallback(event => {
+  const changeConfirmPassword = useCallback((event) => {
     setConfirmPassword(event.target.value);
   }, []);
 
@@ -43,7 +52,7 @@ const Register = ({ dispatch, isFetching, errorMessage, history }) => {
   }, [isPasswordValid, password, dispatch]);
 
   const doRegister = useCallback(
-    e => {
+    (e) => {
       e.preventDefault();
       if (!isPasswordValid()) {
         checkPassword();
@@ -62,18 +71,23 @@ const Register = ({ dispatch, isFetching, errorMessage, history }) => {
     [isPasswordValid, checkPassword, dispatch, email, password, history]
   );
 
-  useEffect(() => {
-    // Additional effects can be added here if needed
-  }, []);
+  // useEffect(() => {
+  // }, []);
 
   return (
     <div className="auth-page">
       <Container>
-        <Widget className="widget-auth mx-auto" title={<h3 className="mt-0">Register for your Web App</h3>}>
+        <Widget
+          className="widget-auth mx-auto"
+          title={<h3 className="mt-0">Register for your Web App</h3>}
+        >
           <p className="widget-auth-info">Please fill all fields below.</p>
           <form onSubmit={doRegister}>
             {errorMessage && (
-              <Alert className="alert-sm widget-middle-overflow rounded-0" color="danger">
+              <Alert
+                className="alert-sm widget-middle-overflow rounded-0"
+                color="danger"
+              >
                 {errorMessage}
               </Alert>
             )}
@@ -144,11 +158,13 @@ const Register = ({ dispatch, isFetching, errorMessage, history }) => {
                 color="danger"
                 className="auth-btn"
                 size="sm"
-                style={{ color: '#fff' }}
+                style={{ color: "#fff" }}
               >
-                {isFetching ? 'Loading...' : 'Register'}
+                {isFetching ? "Loading..." : "Register"}
               </Button>
-              <p className="widget-auth-info mt-4">Already have an account? Login now!</p>
+              <p className="widget-auth-info mt-4">
+                Already have an account? Login now!
+              </p>
               <NavLink className="d-block text-center mb-4" to="/login">
                 Enter the account
               </NavLink>
@@ -157,8 +173,13 @@ const Register = ({ dispatch, isFetching, errorMessage, history }) => {
         </Widget>
       </Container>
       <footer className="auth-footer">
-        {new Date().getFullYear()} &copy; Light Blue Template - React Admin Dashboard Template Made by{' '}
-        <a href="https://flatlogic.com" rel="noopener noreferrer" target="_blank">
+        {new Date().getFullYear()} &copy; Light Blue Template - React Admin
+        Dashboard Template Made by{" "}
+        <a
+          href="https://github.com/SohelSDE"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
           Flatlogic LLC
         </a>
         .
@@ -166,7 +187,5 @@ const Register = ({ dispatch, isFetching, errorMessage, history }) => {
     </div>
   );
 };
-
-
 
 export default Register;

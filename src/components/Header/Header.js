@@ -65,8 +65,7 @@ class Header extends React.Component {
     this.toggleSettingsDropdown = this.toggleSettingsDropdown.bind(this);
     this.toggleAccountDropdown = this.toggleAccountDropdown.bind(this);
     this.toggleSidebar = this.toggleSidebar.bind(this);
-    this.toggleSearchOpen = this.toggleSearchOpen.bind(this);
-
+    this.toggleOpen = this.toggleSearchOpen.bind(this);
     this.state = {
       visible: true,
       messagesOpen: false,
@@ -137,6 +136,7 @@ class Header extends React.Component {
   }
 
   render() {
+    
     return (
       <Navbar className={`d-print-none `}>
         <div className={s.burger}>
@@ -215,7 +215,7 @@ class Header extends React.Component {
                 >
                   <img src={avatar} alt="..." />
                 </span>
-                <span className={`small d-sm-down-none ${s.accountCheck}`}>Philip smith</span>
+                <span className={`small d-sm-down-none ${s.accountCheck}`}>{this.props.user?this.props.user:"Philip smith"}</span>
                 <Badge className={`d-sm-down-none ${s.badge}`} color="danger">
                   9
                 </Badge>

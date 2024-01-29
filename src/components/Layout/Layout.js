@@ -18,7 +18,8 @@ import BreadcrumbHistory from '../BreadcrumbHistory';
 // import { openSidebar, closeSidebar } from '../../actions/navigation';
 import s from './Layout.module.scss';
 
-const Layout = ({ sidebarOpened, sidebarPosition, sidebarVisibility, dispatch, location }) => {
+const Layout = ({ sidebarOpened, sidebarPosition, sidebarVisibility, dispatch, location ,user }) => {
+  console.log('user-layout?',user)
   // const [chatOpen, setChatOpen] = useState(false);
 
   // useEffect(() => {
@@ -50,7 +51,7 @@ const Layout = ({ sidebarOpened, sidebarPosition, sidebarVisibility, dispatch, l
       ].join(' ')}
     >
       <div className={s.wrap}>
-        <Header />
+        <Header  user={user}/>
         <Sidebar />
           <main className={s.content}>
             <BreadcrumbHistory />
@@ -62,7 +63,7 @@ const Layout = ({ sidebarOpened, sidebarPosition, sidebarVisibility, dispatch, l
                 <Routes>
                   <Route path="/login" element={<Navigate to="/dashboard" />} />
                   <Route path="/" element={<Navigate to="/dashboard" />} />
-                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/dashboard" element={<Dashboard email={user}/>} />
                   <Route path="/icons" element={<Icons />} />
                   <Route path="/notifications" element={<Notifications />} />
                   <Route path="/charts" element={<Charts />} />

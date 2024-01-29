@@ -1,32 +1,46 @@
-import React, { useState } from 'react';
-import { Container, Alert, Button, FormGroup, Label, InputGroup, Input, InputGroupText } from 'reactstrap';
-import Widget from '../../components/Widget';
-import { loginUser } from '../../actions/user';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from "react";
+import {
+  Container,
+  Alert,
+  Button,
+  FormGroup,
+  Label,
+  InputGroup,
+  Input,
+  InputGroupText,
+} from "reactstrap";
+import Widget from "../../components/Widget";
+import { loginUser } from "../../actions/user";
+import { Link} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
-  const [email, setEmail] = useState('admin@flatlogic.com');
-  const [password, setPassword] = useState('password');
+  const [email, setEmail] = useState("admin@flatlogic.com");
+  const [password, setPassword] = useState("password");
   const dispatch = useDispatch();
   const isFetching = useSelector((state) => state);
   const errorMessage = useSelector((state) => state.auth.errorMessage);
-  const history = useNavigate();
 
   const doLogin = (e) => {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
-    console.log('Data',isFetching);
+    console.log("Data", isFetching);
   };
 
   return (
     <div className="auth-page">
       <Container>
-        <Widget className="widget-auth mx-auto" title={<h3 className="mt-0">Login to your Web App</h3>}>
+        <Widget
+          className="widget-auth mx-auto"
+          title={<h3 className="mt-0">Login to your Web App</h3>}
+        >
           <p className="widget-auth-info">Use your email to sign in.</p>
           <form onSubmit={doLogin}>
             {errorMessage && (
-              <Alert className="alert-sm widget-middle-overflow rounded-0" color="danger">
+              <Alert
+                className="alert-sm widget-middle-overflow rounded-0"
+                color="danger"
+              >
                 {errorMessage}
               </Alert>
             )}
@@ -72,14 +86,16 @@ const Login = () => {
                 color="danger"
                 className="auth-btn"
                 size="sm"
-                style={{ color: '#fff' }}
+                style={{ color: "#fff" }}
               >
                 <span className="auth-btn-circle" style={{ marginRight: 8 }}>
                   <i className="la la-caret-right" />
                 </span>
-                {isFetching ? 'Loading...' : 'Login'}
+                {isFetching ? "Loading..." : "Login"}
               </Button>
-              <p className="widget-auth-info mt-4">Don't have an account? Sign up now!</p>
+              <p className="widget-auth-info mt-4">
+                Don't have an account? Sign up now!
+              </p>
 
               <Link className="d-block text-center mb-4" to="/register">
                 Create an Account
@@ -89,9 +105,14 @@ const Login = () => {
         </Widget>
       </Container>
       <footer className="auth-footer">
-        {new Date().getFullYear()} &copy; Light Blue Template - React Admin Dashboard Template Made by{' '}
-        <a href="https://flatlogic.com" rel="noopener noreferrer" target="_blank">
-          Flatlogic LLC
+        {new Date().getFullYear()} &copy; Light Blue Template - React Admin
+        Dashboard Template Made by{" "}
+        <a
+          href="https://github.com/SohelSDE"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          SohelSDE
         </a>
         .
       </footer>

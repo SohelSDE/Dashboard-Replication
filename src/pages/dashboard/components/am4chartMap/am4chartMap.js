@@ -5,8 +5,10 @@ import cities from './mock';
 import am4geodata_usaHigh from "@amcharts/amcharts4-geodata/usaHigh";
 import s from './am4chartMap.module.scss';
 import AnimatedNumber from 'react-animated-numbers';
+import { data } from '../mocdata/mocData';
+// import AnimatedNumber from 'react-animated-numbers';
 
-const Am4chartMap = () => {
+const Am4chartMap = (prop) => {
   const [map, setMap] = useState(null);
 
   useEffect(() => {
@@ -64,8 +66,6 @@ const Am4chartMap = () => {
     circle.tooltipText = '{tooltip}';
     circle.propertyFields.radius = 'size';
     //this.map = map;
-    // ... (rest of your component's logic)
-
     setMap(map);
 
     // ComponentWillUnmount logic
@@ -74,21 +74,28 @@ const Am4chartMap = () => {
         map.dispose();
       }
     };
-  }, []); // Empty dependency array to ensure useEffect runs only once
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); 
+let mocData=data
   return (
     <div className={s.mapChart}>
       <div className={s.stats}>
         <h6 className="mt-1">GEO-LOCATIONS</h6>
         <p className="h3 m-0">
           <span className="mr-xs fw-normal">
-            <AnimatedNumber
-              value={1656843}
-              initialValue={0}
-              duration={1000}
-              stepPrecision={0}
-              formatValue={(n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
-            />
+          <AnimatedNumber
+        includeComma
+        transitions={(index) => ({
+          type: "spring",
+          duration: index + 0.3,
+        })}
+        animateToNumber={mocData.geoLocations}
+        fontStyle={{
+          fontSize: 20,
+          color: "#ffff",
+        }}
+      />
+            <h4>{prop.Number}</h4>
           </span>
           <i className="fa fa-map-marker" />
         </p>
