@@ -1,5 +1,5 @@
-import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Routes, Route, Navigate, useParams } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 // import Hammer from 'rc-hammerjs';
 
@@ -17,9 +17,21 @@ import Sidebar from '../Sidebar';
 import BreadcrumbHistory from '../BreadcrumbHistory';
 // import { openSidebar, closeSidebar } from '../../actions/navigation';
 import s from './Layout.module.scss';
+import UserManagement from '../UserManagement/userManagement';
+import UpdateForm from '../UserManagement/updateForm';
 
-const Layout = ({ sidebarOpened, sidebarPosition, sidebarVisibility, dispatch, location ,user }) => {
-  console.log('user-layout?',user)
+const Layout = ({  sidebarPosition, sidebarVisibility,user}) => {
+  const [idReceived,setIdReceived]=useState('true')
+  const [selectedUserId, setSelectedUserId] = useState(null);
+
+
+  const getId = (id) => {
+    setSelectedUserId(id);
+  };
+  // console.log('idOfUser',idOfUser)
+
+  
+  console.log('getId:-',selectedUserId)
   // const [chatOpen, setChatOpen] = useState(false);
 
   // useEffect(() => {
@@ -70,6 +82,12 @@ const Layout = ({ sidebarOpened, sidebarPosition, sidebarVisibility, dispatch, l
                   <Route path="/tables" element={<Static />} />
                   <Route path="/maps" element={<Google />} />
                   <Route path="/typography" element={<Typography />} />
+                  <Route path="/userManagement" element={<UserManagement getId={getId}/>} />
+                  {idReceived?<Route path="/update/:id" element={<UpdateForm userId={selectedUserId} />} />:
+                                    <Route path="/userManagement" element={<UserManagement />} />
+
+                  }
+                 
                 </Routes>
               </CSSTransition>
             </TransitionGroup>

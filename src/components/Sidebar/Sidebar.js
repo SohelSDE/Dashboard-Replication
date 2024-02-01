@@ -118,6 +118,16 @@ class Sidebar extends React.Component {
                         link="/notifications"
                         index="ui"
                     />
+                     <LinksGroup
+                        onActiveSidebarItemChange={activeItem => this.props.dispatch(changeActiveSidebarItem(activeItem))}
+                        activeItem={this.props.activeItem}
+                        header="User Management"
+                        isHeader
+                        iconName={<ComponentsIcon className={s.menuIcon}/>}
+                        link="/userManagement"
+                        index="ui"
+
+                    />
                     <LinksGroup
                         onActiveSidebarItemChange={activeItem => this.props.dispatch(changeActiveSidebarItem(activeItem))}
                         activeItem={this.props.activeItem}

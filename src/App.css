@@ -45,3 +45,12 @@
   overflow: hidden;
   justify-content: center;
 }
+.formbody{
+  border:'3px solid greenyellow'
+  }
+  .classInput{ color: "red";
+         font-weight: "bold";
+         text-align:'center';
+        background:'transparent' ;
+      }
+  
